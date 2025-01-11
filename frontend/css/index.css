@@ -1,0 +1,25 @@
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        #fetchSection {
+            margin-bottom: 20px;
+        }
+        button {
+            font-size: 16px;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+        }
+        #fetchButton {
+            transition: background-color 0.3s ease;
+        }
+        .loading {
+            background-color: red;
+            color: white;
+        }
+        .completed {
+            background-color: green;
+            color: white;
+        }

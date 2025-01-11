@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style src="css/index.css">
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Search Button</title>
+<link rel="stylesheet" href="css/index.css">
+    <style>
+    </style>
+</head>
+
+<body>
+   <h1>Enhanced Search Page</h1>
+
+    <div id="fetchSection">
+        <button id="fetchButton" class="loading" onclick="fetchAndUpdate()">Fetch & Update</button>
+        <p id="fetchMessage">Fetching data will update the search input below.</p>
+    </div>
+
+    <div id="searchSection">
+        <input type="text" placeholder="Type here..." id="searchInput">
+        <button onclick="performSearch()">Search</button>
+    </div>
+
+    <div id="results"></div>    
+    <script src="script/searchButton.js">
+   </script>
+    <script src="script/update_embeding.js">
+   </script>
+  </body>
+</html>
