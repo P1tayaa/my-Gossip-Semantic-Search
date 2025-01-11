@@ -1,14 +1,13 @@
 # Gossip Semantic Search
 
-This project is a semantic search application designed as part of an assignment for **LinkUp**. The application uses advanced natural language processing models to provide meaningful search results based on user queries.
+This project is a semantic search application designed as part of an assignment for **LinkUp**. The application uses sentence-transformer model to provide meaningful search results based on user queries.
 
 ---
 
 ## Features
 
 - **Sentence Transformer**: Embeds input queries and data for efficient similarity searches.
-- **Cross Encoder**: Reranks results for improved precision using advanced transformer models.
-- **Preloaded Models**: Automatically downloads and caches required models to optimize startup time.
+- **Cross Encoder**: Reranks results for improved precision using transformer models.
 - **REST API**: Exposes endpoints for querying and fetching results.
 
 ---
@@ -45,7 +44,7 @@ cd gossip-semantic-search
 sudo docker compose up --build
 ```
 
-### to run it on local machine (tested on my linux)
+### To run it on local machine (tested on my linux)
 
 ```bash
 python backend/app.py
