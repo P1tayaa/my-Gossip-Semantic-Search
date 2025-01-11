@@ -13,9 +13,6 @@ SENTENCE_TRANSFORMER_MODEL = os.getenv("SENTENCE_TRANSFORMER_MODEL", "all-MiniLM
 
 
 def load_query_map():
-    """
-    Load the query-to-embedding file map.
-    """
     if os.path.exists(QUERY_MAP_FILE):
         with open(QUERY_MAP_FILE, "r") as f:
             query_map = json.load(f)
@@ -27,9 +24,6 @@ def load_query_map():
 
 
 def save_query_map(query_map):
-    """
-    Save the query-to-embedding file map.
-    """
     os.makedirs(DATA_DIR, exist_ok=True)
     with open(QUERY_MAP_FILE, "w") as f:
         json.dump(query_map, f, indent=4)
@@ -37,9 +31,6 @@ def save_query_map(query_map):
 
 
 def get_embeddings_file_path(query):
-    """
-    Generate a consistent file path for storing embeddings for a given query.
-    """
     sanitized_query = "".join(
         c if c.isalnum() or c in (" ", "_") else "_" for c in query
     )
@@ -47,18 +38,13 @@ def get_embeddings_file_path(query):
 
 
 def generate_embeddings(query, model_name=SENTENCE_TRANSFORMER_MODEL):
-    """
-    Generate embeddings for a given query.
-    """
     print(f"Generating embeddings for query: {query}")
     model = SentenceTransformer(model_name)
 
-    # Example text list for embedding generation; replace this with actual data retrieval
     text_list = [f"Example sentence for query: {query}"]
 
     embeddings = model.encode(text_list, show_progress_bar=True)
 
-    # Create a DataFrame to store the embeddings
     df = pd.DataFrame(
         {
             "query": [query] * len(text_list),
@@ -76,10 +62,8 @@ def manage_embeddings(query):
     """
     os.makedirs(EMBEDDINGS_DIR, exist_ok=True)
 
-    # Load or create query map
     query_map = load_query_map()
 
-    # Check if embeddings for the query already exist
     if query in query_map:
         file_path = query_map[query]
         if os.path.exists(file_path):
@@ -88,15 +72,12 @@ def manage_embeddings(query):
         else:
             print(f"Embedding file {file_path} not found. Generating new embeddings.")
 
-    # Generate new embeddings
     df_embeddings = generate_embeddings(query)
 
-    # Save new embeddings to file
     file_path = get_embeddings_file_path(query)
     df_embeddings.to_csv(file_path, index=False)
     print(f"Embeddings saved to {file_path}")
 
-    # Update and save query map
     query_map[query] = file_path
     save_query_map(query_map)
 
@@ -104,7 +85,6 @@ def manage_embeddings(query):
 
 
 if __name__ == "__main__":
-    # Example query to test the script
     example_query = "example search query"
     df = manage_embeddings(example_query)
     print(f"Generated or loaded embeddings for query: {example_query}")
